@@ -275,11 +275,13 @@
                                 Browse
                             </label>
                             <div v-if="allInfo.main_image !== '' && imagePreview.first === ''">
-                                <img class="img-fluid" width="250"
+                                <img  @contextmenu.prevent
+      @touchstart.prevent class="img-fluid" width="250"
                                     :src="`https://seasonreal.seasonsge.com/upload/${allInfo.main_image}`" alt="">
                             </div>
                             <div v-else>
-                                <img class="img-fluid" width="250" :src="imagePreview.first" alt="">
+                                <img  @contextmenu.prevent
+      @touchstart.prevent class="img-fluid" width="250" :src="imagePreview.first" alt="">
                             </div>
                         </div>
                         <span v-if="validation.main_image.$error" class="text-danger fst-italic d-block mt-1">
@@ -294,11 +296,13 @@
                                 Browse
                             </label>
                             <div v-if="allInfo.details_image !== '' && imagePreview.second === ''">
-                                <img class="img-fluid" width="250"
+                                <img   @contextmenu.prevent
+      @touchstart.preventclass="img-fluid" width="250"
                                     :src="`https://seasonreal.seasonsge.com/upload/${allInfo.details_image}`" alt="">
                             </div>
                             <div v-else>
-                                <img class="img-fluid" width="250" :src="imagePreview.second" alt="">
+                                <img  @contextmenu.prevent
+      @touchstart.prevent class="img-fluid" width="250" :src="imagePreview.second" alt="">
                             </div>
                         </div>
                         <span v-if="validation.details_image.$error" class="text-danger fst-italic d-block mt-1">

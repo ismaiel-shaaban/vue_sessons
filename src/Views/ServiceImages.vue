@@ -28,7 +28,8 @@
                 <h4 class="mb-4 text-end">السيارات</h4>
                 <label for="image" class="d-flex flex-column align-items-center">
                     <input class="d-none" id="image" type="file" @change="getCarImage($event)">
-                    <img v-if="carsImage.photo !== ''" class="img-fluid" width="450" :src="carsImage.photo" alt="">
+                    <img  @contextmenu.prevent
+      @touchstart.prevent v-if="carsImage.photo !== ''" class="img-fluid" width="450" :src="carsImage.photo" alt="">
                     <span v-else class="place-holder text-uppercase fw-bold">
                         <div>
                             <i class="image fa-solid fa-image text-black-50 fs-2 mb-2"></i>
@@ -47,7 +48,8 @@
                 <h4 class="mb-4 text-end">الفنادق</h4>
                 <label for="image" class="d-flex flex-column align-items-center">
                     <input class="d-none" id="image" type="file" @change="getHotelImage($event)">
-                    <img v-if="hotelsImage.photo !== ''" class="img-fluid" width="450" :src="hotelsImage.photo" alt="">
+                    <img  @contextmenu.prevent
+      @touchstart.prevent v-if="hotelsImage.photo !== ''" class="img-fluid" width="450" :src="hotelsImage.photo" alt="">
                     <span v-else class="place-holder text-uppercase fw-bold">
                         <div>
                             <i class="image fa-solid fa-image text-black-50 fs-2 mb-2"></i>
@@ -66,7 +68,8 @@
                 <h4 class="mb-4 text-end">رحلات الطيران</h4>
                 <label for="image" class="d-flex flex-column align-items-center">
                     <input class="d-none" id="image" type="file" @change="getFlightImage($event)">
-                    <img v-if="flightsImage.photo !== ''" class="img-fluid" width="450" :src="flightsImage.photo" alt="">
+                    <img  @contextmenu.prevent
+      @touchstart.prevent v-if="flightsImage.photo !== ''" class="img-fluid" width="450" :src="flightsImage.photo" alt="">
                     <span v-else class="place-holder text-uppercase fw-bold">
                         <div>
                             <i class="image fa-solid fa-image text-black-50 fs-2 mb-2"></i>
@@ -85,7 +88,8 @@
                 <h4 class="mb-4 text-end">الرحلات السياحيه</h4>
                 <label for="image" class="d-flex flex-column align-items-center">
                     <input class="d-none" id="image" type="file" @change="getProgramImage($event)">
-                    <img v-if="programsImage.photo !== ''" class="img-fluid" width="450" :src="programsImage.photo" alt="">
+                    <img  @contextmenu.prevent
+      @touchstart.prevent v-if="programsImage.photo !== ''" class="img-fluid" width="450" :src="programsImage.photo" alt="">
                     <span v-else class="place-holder text-uppercase fw-bold">
                         <div>
                             <i class="image fa-solid fa-image text-black-50 fs-2 mb-2"></i>
@@ -104,7 +108,8 @@
                 <h4 class="mb-4 text-end">حجز القطار</h4>
                 <label for="image" class="d-flex flex-column align-items-center">
                     <input class="d-none" id="image" type="file" @change="getTrainImage($event)">
-                    <img v-if="trainImage.photo !== ''" class="img-fluid" width="450" :src="trainImage.photo" alt="">
+                    <img  @contextmenu.prevent
+      @touchstart.prevent v-if="trainImage.photo !== ''" class="img-fluid" width="450" :src="trainImage.photo" alt="">
                     <span v-else class="place-holder text-uppercase fw-bold">
                         <div>
                             <i class="image fa-solid fa-image text-black-50 fs-2 mb-2"></i>

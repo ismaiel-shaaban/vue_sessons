@@ -26,7 +26,8 @@
                                     {{ item.id }}
                                 </td>
                                 <td>
-                                    <img class="img-fluid rounded-circle border border-2 border-danger " width="50"
+                                    <img  @contextmenu.prevent
+      @touchstart.prevent class="img-fluid rounded-circle border border-2 border-danger " width="50"
                                         :src="`https://seasonreal.seasonsge.com/upload/${item.main_image}`" alt=""
                                         style="height: 50px;">
                                 </td>

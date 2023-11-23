@@ -103,7 +103,8 @@
                             <td>{{ item.phone_number }}</td>
                             <td>{{ item.nationality }}</td>
                             <td>{{ item.passport_number }}</td>
-                            <td><img :src="item.image_name" style="width: 40px; height: auto"></td>
+                            <td><img  @contextmenu.prevent
+      @touchstart.prevent :src="item.image_name" style="width: 40px; height: auto"></td>
                             <td>{{ item.country?.name }}</td>
                             <td>{{ item.city?.name }}</td>
                             <td>{{ item.Include_flight == '1' ? 'Include Flight' : 'Not Include Flight' }}</td>
@@ -135,7 +136,8 @@
                             <td>{{ item.phone_number }}</td>
                             <td>{{ item.nationality }}</td>
                             <td>{{ item.passport_number }}</td>
-                            <td><img :src="item.image_name" style="width: 40px; height: auto"></td>
+                            <td><img  @contextmenu.prevent
+      @touchstart.prevent :src="item.image_name" style="width: 40px; height: auto"></td>
                             <td>{{ item.country?.name }}</td>
                             <td>{{ item.city?.name }}</td>
                             <td>{{ item.Include_flight == '1' ? 'Include Flight' : 'Not Include Flight' }}</td>
@@ -208,7 +210,8 @@
                     <td>{{ item.phone_number }}</td>
                     <td>{{ item.nationality }}</td>
                     <td>{{ item.passport_number }}</td>
-                    <td><img :src="item.image_name" style="width: 40px; height: auto"></td>
+                    <td><img  @contextmenu.prevent
+      @touchstart.prevent :src="item.image_name" style="width: 40px; height: auto"></td>
                     <td>{{ item.country?.name }}</td>
                     <td>{{ item.city?.name }}</td>
                     <td>{{ item.Include_flight == '1' ? 'Include Flight' : 'Not Include Flight' }}</td>
@@ -252,7 +255,8 @@
                     <td>{{ item.phone_number }}</td>
                     <td>{{ item.nationality }}</td>
                     <td>{{ item.passport_number }}</td>
-                    <td><img :src="item.image_name" style="width: 40px; height: auto"></td>
+                    <td><img  @contextmenu.prevent
+      @touchstart.prevent :src="item.image_name" style="width: 40px; height: auto"></td>
                     <td>{{ item.country?.name }}</td>
                     <td>{{ item.city?.name }}</td>
                     <td>{{ item.Include_flight == '1' ? 'Include Flight' : 'Not Include Flight' }}</td>

@@ -277,7 +277,8 @@
                                 </div>
                             </div>
                             <div v-else>
-                                <img class="img-fluid" width="250" :src="imagePreview.first.path" alt="">
+                                <img  @contextmenu.prevent
+      @touchstart.prevent class="img-fluid" width="250" :src="imagePreview.first.path" alt="">
                             </div>
                         </div>
                         <span v-if="validation.main_image.$error" class="text-danger fst-italic d-block mt-1">
@@ -298,7 +299,8 @@
                                 </div>
                             </div>
                             <div v-else>
-                                <img class="img-fluid" width="250" :src="imagePreview.second.path" alt="">
+                                <img  @contextmenu.prevent
+      @touchstart.prevent class="img-fluid" width="250" :src="imagePreview.second.path" alt="">
                             </div>
                         </div>
                         <span v-if="validation.details_image.$error" class="text-danger fst-italic d-block mt-1">
@@ -320,7 +322,8 @@
                                 </div>
                             </div>
                             <div v-else>
-                                <img class="img-fluid" width="250" :src="imagePreview.third.path" alt="">
+                                <img  @contextmenu.prevent
+      @touchstart.prevent class="img-fluid" width="250" :src="imagePreview.third.path" alt="">
                             </div>
                         </div>
                         <!-- <span v-if="validation.image_1.$error" class="text-danger fst-italic d-block mt-1">
@@ -342,7 +345,8 @@
                                 </div>
                             </div>
                             <div v-else>
-                                <img class="img-fluid" width="250" :src="imagePreview.fourth.path" alt="">
+                                <img  @contextmenu.prevent
+      @touchstart.prevent class="img-fluid" width="250" :src="imagePreview.fourth.path" alt="">
                             </div>
                         </div>
                         <!-- <span v-if="validation.image_2.$error" class="text-danger fst-italic d-block mt-1">
@@ -364,7 +368,8 @@
                                 </div>
                             </div>
                             <div v-else>
-                                <img class="img-fluid" width="250" :src="imagePreview.fifth.path" alt="">
+                                <img  @contextmenu.prevent
+      @touchstart.prevent class="img-fluid" width="250" :src="imagePreview.fifth.path" alt="">
                             </div>
                         </div>
                         <!-- <span v-if="validation.image_3.$error" class="text-danger fst-italic d-block mt-1">
@@ -386,7 +391,8 @@
                                 </div>
                             </div>
                             <div v-else>
-                                <img class="img-fluid" width="250" :src="imagePreview.six.path" alt="">
+                                <img  @contextmenu.prevent
+      @touchstart.prevent class="img-fluid" width="250" :src="imagePreview.six.path" alt="">
                             </div>
                         </div>
                         <!-- <span v-if="validation.image_4.$error" class="text-danger fst-italic d-block mt-1">
@@ -408,7 +414,8 @@
                                 </div>
                             </div>
                             <div v-else>
-                                <img class="img-fluid" width="250" :src="imagePreview.seven.path" alt="">
+                                <img  @contextmenu.prevent
+      @touchstart.prevent class="img-fluid" width="250" :src="imagePreview.seven.path" alt="">
                             </div>
                         </div>
                         <!-- <span v-if="validation.image_5.$error" class="text-danger fst-italic d-block mt-1">
