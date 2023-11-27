@@ -509,41 +509,43 @@ const getTotal = () => {
 }
 
 const getInvoice = (item) => {
-    if (item.user.type == 2) {
-        window.open(`https://season-tooooor.vercel.app/#/ar/agent-flights-checkout/${item.booking_id}/3`, "_blank")
+    console.log("lll" ,item);
+
+    if (item.user.type == 1) {
+        window.open(`https://admirable-starship-be3a91.netlify.app/#/ar/agent-flights-checkout/${item.booking_id}/3`, "_blank")
     } else {
-        window.open(`https://season-tooooor.vercel.app/#/ar/flights-checkout/${item.booking_id}`, "_blank")
+        window.open(`https://admirable-starship-be3a91.netlify.app/#/ar/flights-checkout/${item.booking_id}`, "_blank")
     }
 }
 
 const getBoFlights = async () => {
     loading.value = true
-    await axios.get("https://seasonreal.seasonsge.com/bo-flight")
+    await axios.get("https://seasonreal.seasonsge.com/appv1real/bo-flight")
         .then(data => {
             if (data.data.message !== undefined) {
                 loading.value = false
             } else {
                 flightsArchive.value = data.data
-
+                console.log("flightsArchive",flightsArchive);
                 flightsArchive.value.forEach(el => {
-                    axios.get(`https://seasonreal.seasonsge.com/flights?flight_id=${el.flight_number}`)
+                    axios.get(`https://seasonreal.seasonsge.com/appv1real/flights?flight_id=${el.flight_number}`)
                         .then(data => {
                             el.flight = data.data
                             const from = new FormData()
                             const to = new FormData()
                             from.append("id", el.flight.fromAirport)
-                            axios.post("https://seasonreal.seasonsge.com/viewAirportById", from)
+                            axios.post("https://seasonreal.seasonsge.com/appv1real/viewAirportById", from)
                                 .then(data => {
                                     el.flight.from = data.data.data
                                 })
                             to.append("id", el.flight.toAirport)
-                            axios.post("https://seasonreal.seasonsge.com/viewAirportById", to)
+                            axios.post("https://seasonreal.seasonsge.com/appv1real/viewAirportById", to)
                                 .then(data => {
                                     el.flight.to = data.data.data
                                 })
                             loading.value = false
                         })
-                    axios.get(`https://seasonreal.seasonsge.com/user-data?user_id=${el.email}`)
+                    axios.get(`https://seasonreal.seasonsge.com/appv1real/user-data?user_id=${el.email}`)
                         .then(data => {
                             el.user = data.data
                         })
@@ -566,7 +568,7 @@ let status1Count = ref(0);
 
 const changeData = async (id, status, index) => {
     try {
-        const apiUrl = 'https://seasonreal.seasonsge.com/flight_id';
+        const apiUrl = 'https://seasonreal.seasonsge.com/appv1real/flight_id';
 
         const formData = new FormData();
         formData.append('id', id);

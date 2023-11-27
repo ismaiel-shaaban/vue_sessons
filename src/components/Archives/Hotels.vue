@@ -308,10 +308,11 @@ const getTotal = () => {
 }
 
 const getInvoice = (item) => {
-    if (item.user.type == 2) {
-        window.open(`https://season-tooooor.vercel.app/#/ar/agent-hotels-checkout/${item.code}/3`, "_blank")
+    console.log("lll" ,item);
+    if (item.user.type == 1) {
+        window.open(`https://admirable-starship-be3a91.netlify.app/#/ar/agent-hotels-checkout/${item.code}/3`, "_blank")
     } else {
-        window.open(`https://season-tooooor.vercel.app/#/ar/hotels-checkout/${item.code}`, "_blank")
+        window.open(`https://admirable-starship-be3a91.netlify.app/#/ar/hotels-checkout/${item.code}`, "_blank")
     }
 }
 
@@ -324,7 +325,7 @@ let status1Count = ref(0);
 
 const changeData = async (id, status, index) => {
     try {
-        const apiUrl = 'https://seasonreal.seasonsge.com/hotel_id';
+        const apiUrl = 'https://seasonreal.seasonsge.com/appv1real/hotel_id';
 
         const formData = new FormData();
         formData.append('id', id);
@@ -348,14 +349,15 @@ onMounted(async () => {
 
 const getBoHotels = async () => {
     loading.value = true
-    await axios.get("https://seasonreal.seasonsge.com/bo-hotel")
+    await axios.get("https://seasonreal.seasonsge.com/appv1real/bo-hotel")
         .then(data => {
             if (data.data.message !== undefined) {
                 loading.value = false
             } else {
                 hotelsArchive.value = data.data
+                console.log("hotelsArchive",hotelsArchive);
                 hotelsArchive.value.forEach(el => {
-                    axios.get(`https://seasonreal.seasonsge.com/user-data?user_id=${el.account_name}`)
+                    axios.get(`https://seasonreal.seasonsge.com/appv1real/user-data?user_id=${el.account_name}`)
                         .then(data => {
                             el.user = data.data
                         })

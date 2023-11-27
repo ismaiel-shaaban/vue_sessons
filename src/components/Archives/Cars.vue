@@ -81,7 +81,7 @@
                             <td>{{ item.random_code }}</td>
                             <td>{{ item.first_name }}</td>
                             <td>{{ item.last_name }}</td>
-                            <td v-if="item.email">{{ item.email }}</td>
+                            <td v-if="item.email">{{ item.user.email }}</td>
                             <td>{{ item.phone_number }}</td>
                             <td v-if="item.carType" class="text-capitalize">
                                 {{ item.carType.name }}
@@ -155,7 +155,7 @@
                     <td>{{ item.random_code }}</td>
                     <td>{{ item.first_name }}</td>
                     <td>{{ item.last_name }}</td>
-                    <td v-if="item.email">{{ item.email }}</td>
+                    <td v-if="item.email">{{ item.user.email}}</td>
                     <td v-else>--------</td>
                     <!-- <td v-if="item.user === 0">{{ item.user.email }}</td> -->
                     <td>{{ item.phone_number }}</td>
@@ -299,7 +299,7 @@ let status1Count = ref(0);
 
 const changeData = async (id, status, index) => {
     try {
-        const apiUrl = 'https://seasonreal.seasonsge.com/car_id';
+        const apiUrl = 'https://seasonreal.seasonsge.com/appv1real/car_id';
         console.log(apiUrl)
         const formData = new FormData();
         formData.append('id', id);
@@ -363,32 +363,31 @@ const getTotal = () => {
 }
 
 const getInvoice = (item) => {
-    if (item.user.type == 2) {
-        window.open(`https://season-tooooor.vercel.app/#/ar/agent-cars-checkout/${item.random_code}/3`, "_blank")
+    console.log("lll" ,item);
+    if (item.user.type == 1) {
+        window.open(`https://admirable-starship-be3a91.netlify.app/#/ar/agent-cars-checkout/${item.random_code}/3`, "_blank")
     } else {
-        window.open(`https://season-tooooor.vercel.app/#/ar/agent-cars-checkout/${item.random_code}`, "_blank")
+        window.open(`https://admirable-starship-be3a91.netlify.app/#/ar/cars-checkout/${item.random_code}`, "_blank")
     }
 }
 
-onMounted(async () => {
-    getBoCars()
-})
 
 const getBoCars = async () => {
     loading.value = true
-    return await axios.get("https://seasonreal.seasonsge.com/bo-car")
+    return await axios.get("https://seasonreal.seasonsge.com/appv1real/bo-car")
         .then(data => {
             if (data.data.message !== undefined) {
                 loading.value = false
             } else {
                 carsArchive.value = data.data
+                console.log("carsArchive",carsArchive);
                 carsArchive.value.forEach(ele => {
-                    axios.get("https://seasonreal.seasonsge.com/cars-type-view")
+                    axios.get("https://seasonreal.seasonsge.com/appv1real/cars-type-view")
                         .then(data => {
                             ele.carType = data.data.filter(el => el.id == +ele.type_id)[0]
                             loading.value = false
                         })
-                    axios.get(`https://seasonreal.seasonsge.com/user-data?user_id=${ele.account_owner}`)
+                    axios.get(`https://seasonreal.seasonsge.com/appv1real/user-data?user_id=${ele.account_owner}`)
                         .then(data => {
                             ele.user = data.data
                         })
@@ -399,6 +398,10 @@ const getBoCars = async () => {
             console.log(data.data)
         })
 }
+
+onMounted(async () => {
+    getBoCars()
+})
 </script>
 
 <style lang="scss" scoped>

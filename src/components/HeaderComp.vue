@@ -18,7 +18,7 @@
         <router-link to="/archive">
           الارشيف
         </router-link>
-        <a href="https://seasonreal.seasonsge.com/admin/login.php" class="fw-bold">
+        <a href="https://seasonreal.seasonsge.com/appv1real/admin/login.php" class="fw-bold">
           الرجوع للصفحه الرئيسية
         </a>
       </div>

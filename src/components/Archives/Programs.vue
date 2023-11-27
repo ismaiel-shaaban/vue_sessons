@@ -417,16 +417,18 @@ const getTotal = () => {
 }
 
 const getInvoice = (item) => {
-    if (item.user.type == 2) {
-        window.open(`https://season-tooooor.vercel.app/#/ar/agent-programs-checkout/${item.booking_id}/3`, "_blank")
+
+    console.log("lll" ,item);
+    if (item.user.type == 1) {
+        window.open(`https://admirable-starship-be3a91.netlify.app/#/en/agent-programs-checkout/${item.booking_id}`, "_blank")
     } else {
-        window.open(`https://season-tooooor.vercel.app/#/ar/programs-checkout/${item.booking_id}`, "_blank")
+        window.open(`https://admirable-starship-be3a91.netlify.app/#/en/programs-checkout/${item.booking_id}`, "_blank")
     }
 }
 
 const getPrograms = async () => {
     loading.value = true
-    await axios.get("https://seasonreal.seasonsge.com/bo-program")
+    await axios.get("https://seasonreal.seasonsge.com/appv1real/bo-program")
         .then(data => {
             // debugger
             if (data.data.message !== undefined) {
@@ -435,22 +437,22 @@ const getPrograms = async () => {
             } else {
                 programsArchive.value = data.data
                 programsArchive.value.forEach(el => {
-                    axios.get(`https://seasonreal.seasonsge.com/user-data?user_id=${el.brogram_id}`)
+                    axios.get(`https://seasonreal.seasonsge.com/appv1real/user-data?user_id=${el.email}`)
                         .then(data => {
                             el.user = data.data
-                            // await axios.get('https://seasonreal.seasonsge.com/usersview')
+                            // await axios.get('https://seasonreal.seasonsge.com/appv1real/usersview')
                             //     .then(data => {
                             //         console.log('hello')
                             //         console.log(data.data)
                             //     })
                         })
-                    axios.get("https://seasonreal.seasonsge.com/cities-view")
+                    axios.get("https://seasonreal.seasonsge.com/appv1real/cities-view")
                         .then(data => {
                             el.city = data.data.filter((ele) => ele.id == el.City)[0];
                         })
                     const country = new FormData()
                     country.append("country_id", el.country)
-                    axios.post(`https://seasonreal.seasonsge.com/country-by-id`, country)
+                    axios.post(`https://seasonreal.seasonsge.com/appv1real/country-by-id`, country)
                         .then(data => {
                             el.country = data.data.country
                         })
@@ -475,7 +477,7 @@ let status1Count = ref(0);
 
 const changeData = async (id, status, index) => {
     try {
-        const apiUrl = 'https://seasonreal.seasonsge.com/br_id';
+        const apiUrl = 'https://seasonreal.seasonsge.com/appv1real/br_id';
         // console.log(apiUrl)
 
         const formData = new FormData();

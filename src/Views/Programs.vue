@@ -63,6 +63,11 @@
                                             type="button" title="Edit" @click="confirmEdit(item)"></i>
                                         <i class="fa-solid fa-trash p-2 bg-danger rounded-2 opacity-hover text-light"
                                             type="button" title="Delete" @click="confirmDelete(item)"></i>
+                                      
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" @change="handleToggleChange(item)" type="checkbox" role="switch" id="flexSwitchCheckDefault" :checked="item.status == 1">
+                                                <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                                            </div>
                                     </div>
                                 </td>
                             </tr>
@@ -103,16 +108,30 @@ const confirmDelete = (item) => {
     deletePopupActive.value = true
     tempData.value = item
 }
+const handleToggleChange = (item) => {
+console.log(item.id ,'llllllll');
+let newStatus =0
+item.status==1 ? newStatus=0 :newStatus=1
+
+const formData = new FormData()
+formData.append("program_id", item.id)
+formData.append("status", newStatus)
+axios.post("https://seasonreal.seasonsge.com/appv1real/program-status", formData).then(response => {
+    console.log(response);
+})
+
+
+}
 
 
 onMounted(async () => {
     loading.value = true
-    await axios.get("https://seasonreal.seasonsge.com/all-program").then(data => {
+    await axios.get("https://seasonreal.seasonsge.com/appv1real/all-program").then(data => {
         allPrograms.value = data.data
         loading.value = false
-        console.log(data.data)
+        console.log("allPrograms.value" ,allPrograms.value)
     })
-    await axios.get("https://seasonreal.seasonsge.com/cities-view").then(data => {
+    await axios.get("https://seasonreal.seasonsge.com/appv1real/cities-view").then(data => {
         allPrograms.value.forEach(el => {
             el.destination = data.data.filter(ele => ele.id == el.return_airline)[0]
         })

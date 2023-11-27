@@ -4,29 +4,29 @@
   </main>
 </template>
 <script setup>
-      import { onMounted, onBeforeUnmount } from 'vue';
-    const preventContextMenu = (e) => {
-      e.preventDefault();
-    };
-    window.addEventListener('contextmenu', preventContextMenu);
+    //   import { onMounted, onBeforeUnmount } from 'vue';
+    // const preventContextMenu = (e) => {
+    //   e.preventDefault();
+    // };
+    // window.addEventListener('contextmenu', preventContextMenu);
 
-    const preventDevToolsShortcuts = (e) => {
-      if (
-        (e.ctrlKey && e.shiftKey && e.keyCode === 73) || // Ctrl+Shift+I
-        (e.ctrlKey && e.shiftKey && e.keyCode === 74) || // Ctrl+Shift+J
-        e.keyCode === 123
-      ) {
-        // F12
-        e.preventDefault();
-      }
-    };
-    window.addEventListener('keydown', preventDevToolsShortcuts);
+    // const preventDevToolsShortcuts = (e) => {
+    //   if (
+    //     (e.ctrlKey && e.shiftKey && e.keyCode === 73) || // Ctrl+Shift+I
+    //     (e.ctrlKey && e.shiftKey && e.keyCode === 74) || // Ctrl+Shift+J
+    //     e.keyCode === 123
+    //   ) {
+    //     // F12
+    //     e.preventDefault();
+    //   }
+    // };
+    // window.addEventListener('keydown', preventDevToolsShortcuts);
 
-    onBeforeUnmount(() => {
-      // Cleanup: remove event listeners when the component is unmounted
-      window.removeEventListener('contextmenu', preventContextMenu);
-      window.removeEventListener('keydown', preventDevToolsShortcuts);
-    });
+    // onBeforeUnmount(() => {
+    //   // Cleanup: remove event listeners when the component is unmounted
+    //   window.removeEventListener('contextmenu', preventContextMenu);
+    //   window.removeEventListener('keydown', preventDevToolsShortcuts);
+    // });
 
 </script>
 <style lang="scss">

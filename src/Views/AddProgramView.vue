@@ -690,7 +690,7 @@ const deleteCity = (item) => {
 }
 const searchFlights = async () => {
     loading.value = true
-    await axios.get("https://seasonreal.seasonsge.com/flights?all")
+    await axios.get("https://seasonreal.seasonsge.com/appv1real/flights?all")
         .then(data => {
             allFlights.value = data.data.filter(el => {
                 if (el.departureDate >= new Date().toLocaleDateString("en-CA") &&
@@ -767,14 +767,14 @@ if (!validation.value.$error) {
         formData.append("image_4", allInfo.value.image_4)
         formData.append("image_5", allInfo.value.image_5)
 
-        await axios.post("https://seasonreal.seasonsge.com/program-add", formData)
+        await axios.post("https://seasonreal.seasonsge.com/appv1real/program-add", formData)
             .then(response => {
                 // debugger
                 // console.log(response)
                 if (tableItems.value.length > 0) {
                     tableItems.value.forEach(el => {
                         el.program_id = response.data.program_id
-                        axios.post("https://seasonreal.seasonsge.com/tour-city", el).then(innerResponse => {
+                        axios.post("https://seasonreal.seasonsge.com/appv1real/tour-city", el).then(innerResponse => {
                             // console.log(innerResponse);
                             loading.value = false
                             document.querySelector(".alert-complete").classList.add("active")
@@ -807,21 +807,21 @@ if (!validation.value.$error) {
 
 onMounted(async () => {
     loading.value = true
-    await axios.get("https://seasonreal.seasonsge.com/cities-view")
+    await axios.get("https://seasonreal.seasonsge.com/appv1real/cities-view")
         .then(data => {
             cities.value = data.data
         })
-    await axios.get("https://seasonreal.seasonsge.com/viewAirports")
+    await axios.get("https://seasonreal.seasonsge.com/appv1real/viewAirports")
         .then(data => {
             if (data.data.success) {
                 airPorts.value = data.data.data
             }
         })
-    await axios.get("https://seasonreal.seasonsge.com/cars-type-view")
+    await axios.get("https://seasonreal.seasonsge.com/appv1real/cars-type-view")
         .then(data => {
             cars.value = data.data
         })
-    await axios.get("https://seasonreal.seasonsge.com/airlines-view")
+    await axios.get("https://seasonreal.seasonsge.com/appv1real/airlines-view")
         .then(data => {
             if (data.data.success) {
                 airLines.value = data.data.airlines

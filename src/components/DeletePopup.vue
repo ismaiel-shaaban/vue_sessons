@@ -32,9 +32,9 @@ const loading = ref(false)
 
 const deleteProgram = async () => {
     loading.value = true
-    await axios.get(`https://seasonreal.seasonsge.com/program-delete?program_id=${props.deletedProgram.id}`).then(response => {
+    await axios.get(`https://seasonreal.seasonsge.com/appv1real/program-delete?program_id=${props.deletedProgram.id}`).then(response => {
         // console.log(response);
-        axios.get(`https://seasonreal.seasonsge.com/ci-program-delete?id=${props.deletedProgram.id}`).then(cityDel => {
+        axios.get(`https://seasonreal.seasonsge.com/appv1real/ci-program-delete?id=${props.deletedProgram.id}`).then(cityDel => {
             loading.value = false
             // console.log(cityDel);
             // console.log(props.deletedProgram.id);
