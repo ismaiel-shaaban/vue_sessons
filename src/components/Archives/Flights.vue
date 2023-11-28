@@ -88,7 +88,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-if="flightsArchive.length > 0 && filterList.length === 0" v-for="(item, index) in filteration"
+                        <tr v-if="flightsArchive.length > 0 && filterList.length == 0" v-for="(item, index) in filteration"
                             :key="index">
                             <td class="text-center">{{ item.registration_date }}</td>
                             <td>{{ item.booking_id }}</td>
@@ -105,12 +105,9 @@
                             <td>{{ formatString(item.person6) || '-----' }}</td>
                             <td>{{ formatString(item.person7) || '-----' }}</td>
                             <td>{{ formatString(item.person8) || '-----' }}</td>
-                            <td v-if="item.status === 0">
-                                <button class="btn btn-danger rounded-pill" @click="changeStatus(item)">
-                                    <i :class="statusIconClass"></i>
-                                    Change Status
-                                </button>
-                                <i class="fa-solid fa-xmark"></i>
+                            <td v-if="item.status">
+                                
+                                <i :class="item.status == '1' ? statuscheckIconClass : statusXMarkIconClass" class="ms-2"></i>
                             </td>
                             <!-- <td v-if="item.status">
                                 <button class="btn btn-danger rounded-pill"
@@ -167,7 +164,13 @@
                             <td>{{ formatString(item.person6) || '-----' }}</td>
                             <td>{{ formatString(item.person7) || '-----' }}</td>
                             <td>{{ formatString(item.person8) || '-----' }}</td>
-                            <td v-if="item.status === 1"><i class="fa-solid fa-check"></i></td>
+                            <td v-if="item.status === 0">
+                                <button class="btn btn-danger rounded-pill" @click="changeStatus(item)">
+                                    <i :class="statusIconClass"></i>
+                                    Change Status
+                                </button>
+                                <i class="fa-solid fa-xmark"></i>
+                            </td>
                             <td class="text-center">
                                 {{ USDollar.format(item.net_total) }}
                             </td>
@@ -199,8 +202,8 @@
                             </td> -->
                         </tr>
                         <tr>
-                            <!-- <td colspan="13">الأدوات</td> -->
-                            <!-- <td>{{ fullTotal.toFixed(2) }}</td> -->
+                            <td colspan="16">الاجمالي</td>
+                            <td>{{ fullTotal.toFixed(2) }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -379,6 +382,10 @@
                         </button>
                     </td> -->
                 </tr>
+                <tr>
+                            <td colspan="16">الاجمالي</td>
+                            <td>{{ fullTotal.toFixed(2) }}</td>
+                        </tr>
             </tbody>
         </table>
 
@@ -450,6 +457,15 @@ const json_fields = ref({
     "الصافي": "net_total",
 })
 
+const getTotal = () => {
+    fullTotal.value = 0
+    if (searchInput.value !== '') {
+        filteration.value.forEach(el => fullTotal.value += +el.total)
+    } else if (filterList.value.length > 0) {
+        filterList.value.forEach(el => fullTotal.value += +el.total)
+    } else flightsArchive.value.forEach(el => fullTotal.value += +el.total)
+}
+
 const filteration = computed(() => {
     if (searchInput.value !== '') {
         filterList.value = []
@@ -462,7 +478,10 @@ const filteration = computed(() => {
                 return el
             }
         })
+       
     } else return flightsArchive.value
+
+   
 })
 
 const searchWithDate = async () => {
@@ -492,21 +511,14 @@ const htmlToPdfOptions = {
 const generatePDF = () => {
     fullTotal.value = 0
     if (searchInput.value !== '') {
-        filteration.value.forEach(el => fullTotal.value += +el.net_total)
+        filteration.value.forEach(el => fullTotal.value += +el.total)
     } else if (filterList.value.length > 0) {
-        filterList.value.forEach(el => fullTotal.value += +el.net_total)
-    } else flightsArchive.value.forEach(el => fullTotal.value += +el.net_total)
+        filterList.value.forEach(el => fullTotal.value += +el.total)
+    } else flightsArchive.value.forEach(el => fullTotal.value += +el.total)
     html2Pdf.value.generatePdf()
 }
 
-const getTotal = () => {
-    fullTotal.value = 0
-    if (searchInput.value !== '') {
-        filteration.value.forEach(el => fullTotal.value += +el.net_total)
-    } else if (filterList.value.length > 0) {
-        filterList.value.forEach(el => fullTotal.value += +el.net_total)
-    } else flightsArchive.value.forEach(el => fullTotal.value += +el.net_total)
-}
+
 
 const getInvoice = (item) => {
     console.log("lll" ,item);
@@ -528,6 +540,11 @@ const getBoFlights = async () => {
                 flightsArchive.value = data.data
                 console.log("flightsArchive",flightsArchive);
                 flightsArchive.value.forEach(el => {
+                    console.log(el);
+                    fullTotal.value += +el.total
+                }
+                )
+                flightsArchive.value.forEach(el => {
                     axios.get(`https://seasonreal.seasonsge.com/appv1real/flights?flight_id=${el.flight_number}`)
                         .then(data => {
                             el.flight = data.data
@@ -536,12 +553,14 @@ const getBoFlights = async () => {
                             from.append("id", el.flight.fromAirport)
                             axios.post("https://seasonreal.seasonsge.com/appv1real/viewAirportById", from)
                                 .then(data => {
-                                    el.flight.from = data.data.data
+                                    data.data.data ?el.flight.from = data.data.data:''
                                 })
                             to.append("id", el.flight.toAirport)
                             axios.post("https://seasonreal.seasonsge.com/appv1real/viewAirportById", to)
                                 .then(data => {
-                                    el.flight.to = data.data.data
+                                    console.log(data.data.data);
+
+                                   data.data.data? el.flight.to = data.data.data:''
                                 })
                             loading.value = false
                         })

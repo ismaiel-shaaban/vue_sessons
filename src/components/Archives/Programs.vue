@@ -116,6 +116,10 @@
                             <td>{{ formatString(item.person6) || '-----' }}</td>
                             <td>{{ formatString(item.person7) || '-----' }}</td>
                             <td>{{ formatString(item.person8) || '-----' }}</td>
+                            <td v-if="item.status">
+                   
+                                <i :class="item.status == '1' ? statuscheckIconClass : statusXMarkIconClass" class="ms-2"></i>
+                            </td>
                             <td class="text-center">
                                 {{ USDollar.format(item.total) }}
                             </td>
@@ -149,6 +153,10 @@
                             <td>{{ formatString(item.person6) || '-----' }}</td>
                             <td>{{ formatString(item.person7) || '-----' }}</td>
                             <td>{{ formatString(item.person8) || '-----' }}</td>
+                            <td v-if="item.status">
+                   
+                                <i :class="item.status == '1' ? statuscheckIconClass : statusXMarkIconClass" class="ms-2"></i>
+                            </td>
                             <td class="text-center">
                                 {{ USDollar.format(item.total) }}
                             </td>
@@ -160,7 +168,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="13">الاجمالي</td>
+                            <td colspan="23">الاجمالي</td>
                             <td>{{ fullTotal.toFixed(2) }}</td>
                         </tr>
                     </tbody>
@@ -211,7 +219,7 @@
                     <td>{{ item.nationality }}</td>
                     <td>{{ item.passport_number }}</td>
                     <td><img  @contextmenu.prevent
-      @touchstart.prevent :src="item.image_name" style="width: 40px; height: auto"></td>
+                    @touchstart.prevent :src="item.image_name" style="width: 40px; height: auto"></td>
                     <td>{{ item.country?.name }}</td>
                     <td>{{ item.city?.name }}</td>
                     <td>{{ item.Include_flight == '1' ? 'Include Flight' : 'Not Include Flight' }}</td>
@@ -256,7 +264,7 @@
                     <td>{{ item.nationality }}</td>
                     <td>{{ item.passport_number }}</td>
                     <td><img  @contextmenu.prevent
-      @touchstart.prevent :src="item.image_name" style="width: 40px; height: auto"></td>
+                         @touchstart.prevent :src="item.image_name" style="width: 40px; height: auto"></td>
                     <td>{{ item.country?.name }}</td>
                     <td>{{ item.city?.name }}</td>
                     <td>{{ item.Include_flight == '1' ? 'Include Flight' : 'Not Include Flight' }}</td>
@@ -268,7 +276,10 @@
                     <td>{{ formatString(item.person6) || '-----' }}</td>
                     <td>{{ formatString(item.person7) || '-----' }}</td>
                     <td>{{ formatString(item.person8) || '-----' }}</td>
-                    <td v-if="item.status === 1"><i class="fa-solid fa-check"></i></td>
+                    <td v-if="item.status">
+                   
+                        <i :class="item.status == '1' ? statuscheckIconClass : statusXMarkIconClass" class="ms-2"></i>
+                    </td>
                     <td class="text-center">
                         {{ USDollar.format(item.total) }}
                     </td>
@@ -285,6 +296,10 @@
                         </button>
                     </td>
                 </tr>
+                <tr>
+                            <td colspan="23">الاجمالي</td>
+                            <td>{{ fullTotal.toFixed(2) }}</td>
+                        </tr>
             </tbody>
         </table>
         <h3 v-if="programsArchive.length === 0" class="text-muted text-center w-100 py-5">Nothing To Show</h3>
@@ -399,10 +414,10 @@ const htmlToPdfOptions = {
 const generatePDF = () => {
     fullTotal.value = 0
     if (searchInput.value !== '') {
-        filteration.value.forEach(el => fullTotal.value += +el.net)
+        filteration.value.forEach(el =>     el.net!='NaN' ? fullTotal.value +=  +el.net :'')
     } else if (filterList.value.length > 0) {
-        filterList.value.forEach(el => fullTotal.value += +el.net)
-    } else programsArchive.value.forEach(el => fullTotal.value += +el.net)
+        filterList.value.forEach(el =>     el.net!='NaN' ? fullTotal.value +=  +el.net :'')
+    } else programsArchive.value.forEach(el =>     el.net!='NaN' ? fullTotal.value +=  +el.net :'')
     html2Pdf.value.generatePdf()
 }
 
@@ -410,10 +425,10 @@ const generatePDF = () => {
 const getTotal = () => {
     fullTotal.value = 0
     if (searchInput.value !== '') {
-        filteration.value.forEach(el => fullTotal.value += +el.net)
+        filteration.value.forEach(el =>     el.net!='NaN' ? fullTotal.value +=  +el.net :'')
     } else if (filterList.value.length > 0) {
-        filterList.value.forEach(el => fullTotal.value += +el.net)
-    } else programsArchive.value.forEach(el => fullTotal.value += +el.net)
+        filterList.value.forEach(el =>     el.net!='NaN' ? fullTotal.value +=  +el.net :'')
+    } else programsArchive.value.forEach(el =>     el.net!='NaN' ? fullTotal.value +=  +el.net :'')
 }
 
 const getInvoice = (item) => {
@@ -436,6 +451,10 @@ const getPrograms = async () => {
                 // console.log(data.data)
             } else {
                 programsArchive.value = data.data
+                programsArchive.value.forEach(el => {
+                    console.log(el);
+                    el.net!='NaN' ? fullTotal.value +=  +el.net :''
+                })
                 programsArchive.value.forEach(el => {
                     axios.get(`https://seasonreal.seasonsge.com/appv1real/user-data?user_id=${el.email}`)
                         .then(data => {

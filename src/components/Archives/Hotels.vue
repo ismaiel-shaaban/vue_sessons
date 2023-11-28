@@ -194,6 +194,10 @@
                         </button>
                     </td>
                 </tr>
+                <tr>
+                            <td colspan="14">الاجمالي</td>
+                            <td>{{ fullTotal.toFixed(2) }}</td>
+                        </tr>
             </tbody>
         </table>
         <h3 v-if="hotelsArchive.length === 0" class="text-muted text-center w-100 py-5">Nothing To Show</h3>
@@ -355,6 +359,10 @@ const getBoHotels = async () => {
                 loading.value = false
             } else {
                 hotelsArchive.value = data.data
+                hotelsArchive.value.forEach(el => {
+                    console.log(el);
+                    fullTotal.value += +el.net_total
+                })
                 console.log("hotelsArchive",hotelsArchive);
                 hotelsArchive.value.forEach(el => {
                     axios.get(`https://seasonreal.seasonsge.com/appv1real/user-data?user_id=${el.account_name}`)

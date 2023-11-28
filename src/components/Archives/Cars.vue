@@ -81,7 +81,7 @@
                             <td>{{ item.random_code }}</td>
                             <td>{{ item.first_name }}</td>
                             <td>{{ item.last_name }}</td>
-                            <td v-if="item.email">{{ item.user.email }}</td>
+                            <td v-if="item.email">{{ item.user?.email }}</td>
                             <td>{{ item.phone_number }}</td>
                             <td v-if="item.carType" class="text-capitalize">
                                 {{ item.carType.name }}
@@ -120,7 +120,7 @@
                             <td>{{ USDollar.format(item.net_amount) }}</td>
                         </tr>
                         <tr>
-                            <td colspan="13">الاجمالي</td>
+                            <td colspan="14">الاجمالي</td>
                             <td>{{ fullTotal.toFixed(2) }}</td>
                         </tr>
                     </tbody>
@@ -155,7 +155,7 @@
                     <td>{{ item.random_code }}</td>
                     <td>{{ item.first_name }}</td>
                     <td>{{ item.last_name }}</td>
-                    <td v-if="item.email">{{ item.user.email}}</td>
+                    <td v-if="item.email">{{ item.user?.email}}</td>
                     <td v-else>--------</td>
                     <!-- <td v-if="item.user === 0">{{ item.user.email }}</td> -->
                     <td>{{ item.phone_number }}</td>
@@ -213,6 +213,10 @@
                         </button>
                     </td>
                 </tr>
+                <tr>
+                            <td colspan="14">الاجمالي</td>
+                            <td>{{ fullTotal.toFixed(2) }}</td>
+                        </tr>
             </tbody>
         </table>
         <h3 v-if="carsArchive.length === 0" class="text-muted text-center w-100 py-5">Nothing To Show</h3>
@@ -354,6 +358,7 @@ const generatePDF = () => {
 }
 
 const getTotal = () => {
+console.log('........................');
     fullTotal.value = 0
     if (searchInput.value !== '') {
         filteration.value.forEach(el => fullTotal.value += +el.net_amount)
@@ -381,6 +386,11 @@ const getBoCars = async () => {
             } else {
                 carsArchive.value = data.data
                 console.log("carsArchive",carsArchive);
+                carsArchive.value.forEach(el => {
+                    console.log(+el.net_amount);
+                    fullTotal.value += +el.net_amount
+                }
+                )
                 carsArchive.value.forEach(ele => {
                     axios.get("https://seasonreal.seasonsge.com/appv1real/cars-type-view")
                         .then(data => {
@@ -401,6 +411,7 @@ const getBoCars = async () => {
 
 onMounted(async () => {
     getBoCars()
+    
 })
 </script>
 
