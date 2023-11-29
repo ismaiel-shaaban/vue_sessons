@@ -202,8 +202,9 @@
                             </td> -->
                         </tr>
                         <tr>
-                            <td colspan="16">الاجمالي</td>
-                            <td>{{ fullTotal.toFixed(2) }}</td>
+                            <td colspan="1"></td>
+                    <td>{{ fullTotal.toFixed(2) }}</td>
+                    <td colspan="1">الاجمالي</td>
                         </tr>
                     </tbody>
                 </table>
@@ -383,8 +384,9 @@
                     </td> -->
                 </tr>
                 <tr>
-                            <td colspan="16">الاجمالي</td>
-                            <td>{{ fullTotal.toFixed(2) }}</td>
+                    <td colspan="16"></td>
+                    <td>{{ fullTotal.toFixed(2) }}</td>
+                    <td colspan="1">الاجمالي</td>
                         </tr>
             </tbody>
         </table>

@@ -120,8 +120,9 @@
                             <td>{{ USDollar.format(item.net_amount) }}</td>
                         </tr>
                         <tr>
-                            <td colspan="14">الاجمالي</td>
+                            <td colspan="13"></td>
                             <td>{{ fullTotal.toFixed(2) }}</td>
+                            <td colspan="1">الاجمالي</td>
                         </tr>
                     </tbody>
                 </table>
@@ -214,9 +215,10 @@
                     </td>
                 </tr>
                 <tr>
-                            <td colspan="14">الاجمالي</td>
-                            <td>{{ fullTotal.toFixed(2) }}</td>
-                        </tr>
+                    <td colspan="14"></td>
+                    <td>{{ fullTotal.toFixed(2) }}</td>
+                    <td colspan="1">الاجمالي</td>
+                </tr>
             </tbody>
         </table>
         <h3 v-if="carsArchive.length === 0" class="text-muted text-center w-100 py-5">Nothing To Show</h3>

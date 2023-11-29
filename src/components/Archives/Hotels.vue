@@ -110,8 +110,9 @@
                             <td>{{ USDollar.format(item.net_total) }}</td>
                         </tr>
                         <tr>
-                            <td colspan="13">الاجمالي</td>
+                            <td colspan="13"></td>
                             <td>{{ fullTotal.toFixed(2) }}</td>
+                            <td colspan="1">الاجمالي</td>
                         </tr>
                     </tbody>
                 </table>
@@ -195,8 +196,9 @@
                     </td>
                 </tr>
                 <tr>
-                            <td colspan="14">الاجمالي</td>
-                            <td>{{ fullTotal.toFixed(2) }}</td>
+                    <td colspan="14"></td>
+                    <td>{{ fullTotal.toFixed(2) }}</td>
+                    <td colspan="1">الاجمالي</td>
                         </tr>
             </tbody>
         </table>
