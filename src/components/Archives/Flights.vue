@@ -33,6 +33,16 @@
             </JsonExcel>
         </div>
 
+        <div class="d-flex align-items-center gap-2">
+            
+            <button class="btn p-1 btn-danger rounded-pill px-4 text-uppercase d-flex gap-2 align-items-center"
+                @click="deleteIAll">
+                
+                حذف الجميع
+            </button>
+         
+        </div>
+
         <div>
             <span class="result text-muted fw-semibold" v-if="filterList.length > 0">
                 Results: {{ filterList.length }}
@@ -273,10 +283,16 @@
                         {{ USDollar.format(item.total) }}
                     </td>
                     <td>
-                        <button class="btn btn-danger rounded-pill" @click="getInvoice(item)">
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-danger rounded-pill" @click="getInvoice(item)">
                             <i class="fa-solid fa-file-pdf mx-1"></i>
-                            Invoice PDF
-                        </button>
+                                Invoice PDF
+                            </button> 
+                            <button class="btn btn-danger rounded-pill m-1" @click="deleteItem(item)">
+                           
+                                حذف
+                            </button> 
+                        </div>
                     </td>
                     <!-- <td class="text-center" v-if="item.flight && item.flight.from">
                         {{ item.flight.from.english_name }}
@@ -342,10 +358,16 @@
                         {{ USDollar.format(item.total) }}
                     </td>
                     <td>
-                        <button class="btn btn-danger rounded-pill" @click="getInvoice(item)">
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-danger rounded-pill" @click="getInvoice(item)">
                             <i class="fa-solid fa-file-pdf mx-1"></i>
-                            Invoice PDF
-                        </button>
+                                Invoice PDF
+                            </button> 
+                            <button class="btn btn-danger rounded-pill m-1" @click="deleteItem(item)">
+                           
+                                حذف
+                            </button> 
+                        </div>
                     </td>
                     <!-- <td class="text-center" v-if="item.flight && item.flight.from">
                         {{ item.flight.from.english_name }}
@@ -530,6 +552,15 @@ const getInvoice = (item) => {
     } else {
         window.open(`https://admirable-starship-be3a91.netlify.app/#/ar/flights-checkout/${item.booking_id}`, "_blank")
     }
+}
+
+const deleteItem = (item) => {
+    console.log("lll" ,item);
+  
+}
+const deleteIAll = () => {
+    console.log("lll" ,item);
+  
 }
 
 const getBoFlights = async () => {

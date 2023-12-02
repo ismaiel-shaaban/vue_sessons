@@ -1,7 +1,17 @@
 <template>
     <div class="archive min-vh-100">
         <HeaderComp></HeaderComp>
-        <div class="cont p-3 py-5">
+     
+        <div class="cont p-3 py-3 ">
+            <div class="d-flex align-items-center m-2 ">
+            
+                <button class="btn p-1 btn-danger rounded-pill px-4 text-uppercase d-flex gap-2 align-items-center"
+                    @click="deleteIAllArchives">
+                    
+                    حذف جميع الأرشيف
+                </button>
+         
+            </div>
             <div class="tabs d-flex w-100 flex-md-row flex-column">
                 <span :class="`tab bg-secondary text-light fw-bold p-3 px-4 ${activeTab === '1' ? 'active' : ''}`"
                     @click="activeTab = '1'">
@@ -39,6 +49,9 @@ import Flights from '../components/Archives/Flights.vue';
 import Programs from '../components/Archives/Programs.vue';
 
 const activeTab = ref('1')
+const deleteIAllArchives = ()=>{
+    
+}
 </script>
 
 <style lang="scss" scoped>
