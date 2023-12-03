@@ -50,7 +50,7 @@ import Programs from '../components/Archives/Programs.vue';
 
 const activeTab = ref('1')
 const deleteIAllArchives = ()=>{
-    
+    window.open("https://seasonreal.seasonsge.com/appv1real/delete-all", "_blank");
 }
 </script>
 

@@ -344,10 +344,19 @@ const getInvoice = (item) => {
 }
 const deleteItem = (item) => {
     console.log("lll" ,item);
+    const formData = new FormData();
+    formData.append('id', item.id);
+    axios.post("https://seasonreal.seasonsge.com/appv1real/ar-hotel" ,formData)
+        .then(data => {
+          
+          if(data.data.success){
+            window.location.reload();
+          }
+    })
   
 }
 const deleteIAll = () => {
-    console.log("lll" ,item);
+    window.open("https://seasonreal.seasonsge.com/appv1real/delete-hotel", "_blank");
   
 }
 // change status
