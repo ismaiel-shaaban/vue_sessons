@@ -427,7 +427,7 @@ const getBoCars = async () => {
             if (data.data.message !== undefined) {
                 loading.value = false
             } else {
-                carsArchive.value = data.data
+                carsArchive.value =data.data.filter((el) => el.type_id != 0)
                 console.log("carsArchive",carsArchive);
                 carsArchive.value.forEach(el => {
                     console.log(+el.net_amount);
