@@ -395,7 +395,7 @@ const getInvoice = (item) => {
     if (item.user.type == 1) {
         window.open(`https://admirable-starship-be3a91.netlify.app/#/ar/agent-cars-checkout/${item.random_code}/3`, "_blank")
     } else {
-        window.open(`https://admirable-starship-be3a91.netlify.app/#/ar/cars-checkout/${item.random_code}`, "_blank")
+        window.open(`https://admirable-starship-be3a91.netlify.app/#/ar/cars-checkout/${item.random_code}/3`, "_blank")
     }
 }
 const deleteItem = (item) => {

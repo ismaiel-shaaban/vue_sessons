@@ -339,7 +339,7 @@ const getInvoice = (item) => {
     if (item.user.type == 1) {
         window.open(`https://admirable-starship-be3a91.netlify.app/#/ar/agent-hotels-checkout/${item.code}/3`, "_blank")
     } else {
-        window.open(`https://admirable-starship-be3a91.netlify.app/#/ar/hotels-checkout/${item.code}`, "_blank")
+        window.open(`https://admirable-starship-be3a91.netlify.app/#/ar/hotels-checkout/${item.code}/3`, "_blank")
     }
 }
 const deleteItem = (item) => {

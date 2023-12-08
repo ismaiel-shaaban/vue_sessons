@@ -460,7 +460,7 @@ const getInvoice = (item) => {
     if (item.user.type == 1) {
         window.open(`https://admirable-starship-be3a91.netlify.app/#/en/agent-programs-checkout/${item.booking_id}`, "_blank")
     } else {
-        window.open(`https://admirable-starship-be3a91.netlify.app/#/en/programs-checkout/${item.booking_id}`, "_blank")
+        window.open(`https://admirable-starship-be3a91.netlify.app/#/en/programs-checkout/${item.booking_id}/3`, "_blank")
     }
 }
 
