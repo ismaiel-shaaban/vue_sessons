@@ -329,6 +329,7 @@
                                     <td>اسم الفندق انجليزي</td>
                                     <td>تاريخ التسجيل</td>
                                     <td>تاريخ المغادره</td>
+                                    <td> الترتيب</td>
                                     <td>عدد الليالي</td>
                                     <td></td>
                                 </tr>
@@ -361,6 +362,9 @@
                                             :min-date="new Date().toLocaleDateString('en-CA')" :enable-time-picker="false"
                                             model-type="yyyy-MM-dd" auto-apply :teleport="true"
                                             input-class-name="date-input" />
+                                    </td>
+                                    <td>
+                                        <input class="px-2" type="number" min="1" v-model="item.num">
                                     </td>
                                     <td>
                                         <input class="px-2" type="number" min="0" v-model="item.num_of_nights">
@@ -557,6 +561,7 @@ const addCity = () => {
         hotel_name_english: '',
         registration_date: new Date().toLocaleDateString("en-CA"),
         departure_date: new Date().toLocaleDateString("en-CA"),
+        num : '0',
         num_of_nights: '0',
     })
 }
