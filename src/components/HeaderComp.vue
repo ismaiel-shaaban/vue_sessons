@@ -18,6 +18,9 @@
         <router-link to="/archive">
           الارشيف
         </router-link>
+        <router-link to="/add-app-images">
+          صور التطبيق 
+        </router-link>
         <a href="https://seasonreal.seasonsge.com/appv1real/admin/login.php" class="fw-bold">
           الرجوع للصفحه الرئيسية
         </a>

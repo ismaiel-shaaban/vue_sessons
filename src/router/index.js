@@ -12,6 +12,11 @@ const routes = [
     component: () => import("../Views/AddProgramView.vue"),
   },
   {
+    path: "/add-app-images",
+    name: "Add App Images",
+    component: () => import("../Views/AddAppImages.vue"),
+  },
+  {
     path: "/services-images",
     name: "Services Images",
     component: () => import("../Views/ServiceImages.vue"),
