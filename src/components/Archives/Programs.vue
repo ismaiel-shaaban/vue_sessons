@@ -118,13 +118,13 @@
                             <td>{{ item.city?.name }}</td>
                             <td>{{ item.Include_flight == '1' ? 'Include Flight' : 'Not Include Flight' }}</td>
                             <td>{{ +item.number_of_adults + +item.number_of_children + +item.number_of_infants }}</td>
-                            <td>{{ formatString(item.person2) || '-----' }}</td>
-                            <td>{{ formatString(item.person3) || '-----' }}</td>
-                            <td>{{ formatString(item.person4) || '-----' }}</td>
-                            <td>{{ formatString(item.person5) || '-----' }}</td>
-                            <td>{{ formatString(item.person6) || '-----' }}</td>
-                            <td>{{ formatString(item.person7) || '-----' }}</td>
-                            <td>{{ formatString(item.person8) || '-----' }}</td>
+                            <td>{{ item.person2?.split(',')[0] || '-----' }}</td>
+                            <td>{{ item.person3?.split(',')[0] || '-----' }}</td>
+                            <td>{{ item.person4?.split(',')[0] || '-----' }}</td>
+                            <td>{{ item.person5?.split(',')[0] || '-----' }}</td>
+                            <td>{{ item.person6?.split(',')[0] || '-----' }}</td>
+                            <td>{{ item.person7?.split(',')[0] || '-----' }}</td>
+                            <td>{{ item.person8?.split(',')[0] || '-----' }}</td>
                             <td v-if="item.status">
                    
                                 <i :class="item.status == '1' ? statuscheckIconClass : statusXMarkIconClass" class="ms-2"></i>
@@ -155,13 +155,13 @@
                             <td>{{ item.city?.name }}</td>
                             <td>{{ item.Include_flight == '1' ? 'Include Flight' : 'Not Include Flight' }}</td>
                             <td>{{ +item.number_of_adults + +item.number_of_children + +item.number_of_infants }}</td>
-                            <td>{{ formatString(item.person2) || '-----' }}</td>
-                            <td>{{ formatString(item.person3) || '-----' }}</td>
-                            <td>{{ formatString(item.person4) || '-----' }}</td>
-                            <td>{{ formatString(item.person5) || '-----' }}</td>
-                            <td>{{ formatString(item.person6) || '-----' }}</td>
-                            <td>{{ formatString(item.person7) || '-----' }}</td>
-                            <td>{{ formatString(item.person8) || '-----' }}</td>
+                            <td>{{ item.person2?.split(',')[0] || '-----' }}</td>
+                            <td>{{ item.person3?.split(',')[0] || '-----' }}</td>
+                            <td>{{ item.person4?.split(',')[0] || '-----' }}</td>
+                            <td>{{ item.person5?.split(',')[0] || '-----' }}</td>
+                            <td>{{ item.person6?.split(',')[0] || '-----' }}</td>
+                            <td>{{ item.person7?.split(',')[0] || '-----' }}</td>
+                            <td>{{ item.person8?.split(',')[0] || '-----' }}</td>
                             <td v-if="item.status">
                    
                                 <i :class="item.status == '1' ? statuscheckIconClass : statusXMarkIconClass" class="ms-2"></i>
@@ -234,7 +234,7 @@
                     <td>{{ item.city?.name }}</td>
                     <td>{{ item.Include_flight == '1' ? 'Include Flight' : 'Not Include Flight' }}</td>
                     <td>{{ +item.number_of_adults + +item.number_of_children + +item.number_of_infants }}</td>
-                    <td>{{ formatString(item.person2) || '-----' }}</td>
+                    <td>{{ item.person2 || '-----' }}</td>
                     <td>{{ formatString(item.person3) || '-----' }}</td>
                     <td>{{ formatString(item.person4) || '-----' }}</td>
                     <td>{{ formatString(item.person5) || '-----' }}</td>
@@ -354,7 +354,8 @@ const USDollar = Intl.NumberFormat('en-US', {
     style: 'currency',
 })
 const formatString = (str) => {
-    if (str == '') {
+    if (str !== ''&& str!= null) {
+      
         return str.split('-').join('/')
     }
 }
@@ -458,7 +459,7 @@ const getInvoice = (item) => {
 
     console.log("lll" ,item);
     if (item.user.type == 1) {
-        window.open(`https://admirable-starship-be3a91.netlify.app/#/en/agent-programs-checkout/${item.booking_id}`, "_blank")
+        window.open(`https://admirable-starship-be3a91.netlify.app/#/en/agent-programs-checkout/${item.booking_id}/3`, "_blank")
     } else {
         window.open(`https://admirable-starship-be3a91.netlify.app/#/en/programs-checkout/${item.booking_id}/3`, "_blank")
     }

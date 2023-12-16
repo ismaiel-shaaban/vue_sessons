@@ -108,13 +108,13 @@
                             <td>{{ item.phone_number }}</td>
                             <td>{{ item.nationality }}</td>
                             <td>{{ item.passport_number }}</td>
-                            <td>{{ formatString(item.person2) || '-----' }}</td>
-                            <td>{{ formatString(item.person3) || '-----' }}</td>
-                            <td>{{ formatString(item.person4) || '-----' }}</td>
-                            <td>{{ formatString(item.person5) || '-----' }}</td>
-                            <td>{{ formatString(item.person6) || '-----' }}</td>
-                            <td>{{ formatString(item.person7) || '-----' }}</td>
-                            <td>{{ formatString(item.person8) || '-----' }}</td>
+                            <td>{{ item.person2.split(',')[0] || '-----' }}</td>
+                            <td>{{ item.person3.split(',')[0] || '-----' }}</td>
+                            <td>{{ item.person4.split(',')[0] || '-----' }}</td>
+                            <td>{{ item.person5.split(',')[0] || '-----' }}</td>
+                            <td>{{ item.person6.split(',')[0] || '-----' }}</td>
+                            <td>{{ item.person7.split(',')[0] || '-----' }}</td>
+                            <td>{{ item.person8.split(',')[0] || '-----' }}</td>
                             <td v-if="item.status">
                                 
                                 <i :class="item.status == '1' ? statuscheckIconClass : statusXMarkIconClass" class="ms-2"></i>
@@ -167,13 +167,13 @@
                             <td>{{ item.phone_number }}</td>
                             <td>{{ item.nationality }}</td>
                             <td>{{ item.passport_number }}</td>
-                            <td>{{ formatString(item.person2) || '-----' }}</td>
-                            <td>{{ formatString(item.person3) || '-----' }}</td>
-                            <td>{{ formatString(item.person4) || '-----' }}</td>
-                            <td>{{ formatString(item.person5) || '-----' }}</td>
-                            <td>{{ formatString(item.person6) || '-----' }}</td>
-                            <td>{{ formatString(item.person7) || '-----' }}</td>
-                            <td>{{ formatString(item.person8) || '-----' }}</td>
+                            <td>{{ item.person2.split(',')[0] || '-----' }}</td>
+                            <td>{{ item.person3.split(',')[0] || '-----' }}</td>
+                            <td>{{ item.person4.split(',')[0] || '-----' }}</td>
+                            <td>{{ item.person5.split(',')[0] || '-----' }}</td>
+                            <td>{{ item.person6.split(',')[0] || '-----' }}</td>
+                            <td>{{ item.person7.split(',')[0] || '-----' }}</td>
+                            <td>{{ item.person8.split(',')[0] || '-----' }}</td>
                             <td v-if="item.status === 0">
                                 <button class="btn btn-danger rounded-pill" @click="changeStatus(item)">
                                     <i :class="statusIconClass"></i>
@@ -447,7 +447,7 @@ const USDollar = Intl.NumberFormat('en-US', {
 })
 
 const formatString = (str) => {
-    if (str !== '') {
+    if (str !== '' && str!= null) {
         return str.split("-").join("/")
     }
 }

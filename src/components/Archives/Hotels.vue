@@ -302,7 +302,7 @@ const searchWithDate = async () => {
     }
 }
 const htmlToPdfOptions = {
-    margin: 20,
+    margin: 0,
     image: {
         type: 'jpeg',
         quality: 0.98
