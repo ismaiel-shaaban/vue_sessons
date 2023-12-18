@@ -74,6 +74,8 @@
                             <td>البريد الالكتروني</td>
                             <td>رقم الهاتف</td>
                             <td>نوع السياره</td>
+                            <td> الدولة</td>
+                            <td> المدينة</td>
                             <td>السائق</td>
                             <td>مكان الالتقاء</td>
                             <td>تاريخ البدايه</td>
@@ -96,6 +98,8 @@
                                 {{ item.carType.name }}
                             </td>
                             <td v-else>--------</td>
+                            <td>{{ item.email?.split(',')[1]}}</td>
+                            <td>{{ item.email?.split(',')[2]}}</td>
                             <td>
                                 {{ item.with_driver === '0' ? 'Without Driver' : 'With Driver' }}
                             </td>
