@@ -8,18 +8,4 @@ export default defineConfig({
 
   plugins: [Vue()],
 
-  build: {
-    // Set the chunk size warning limit in kilobytes
-    chunkSizeWarningLimit: 1000,
-
-    // Configure manual chunks to group specific dependencies together
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          // Example: Grouping lodash into a separate chunk
-          lodash: ['lodash'],
-        },
-      },
-    },
-  },
 });
