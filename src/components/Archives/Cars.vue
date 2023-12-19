@@ -122,6 +122,8 @@
                                 {{ item.carType.name }}
                             </td>
                             <td v-else>--------</td>
+                            <td>{{ item.email?.split(',')[1]}}</td>
+                            <td>{{ item.email?.split(',')[2]}}</td>
                             <td>
                                 {{ item.with_driver === '0' ? 'Without Driver' : 'With Driver' }}
                             </td>
@@ -133,7 +135,7 @@
                             <td>{{ USDollar.format(item.net_amount) }}</td>
                         </tr>
                         <tr>
-                            <td colspan="13"></td>
+                            <td colspan="15"></td>
                             <td>{{ fullTotal.toFixed(2) }}</td>
                             <td colspan="1">الاجمالي</td>
                         </tr>
@@ -151,6 +153,8 @@
                     <td>البريد الالكتروني</td>
                     <td>رقم الهاتف</td>
                     <td>نوع السياره</td>
+                    <td> الدولة</td>
+                            <td> المدينة</td>
                     <td>السائق</td>
                     <td>مكان الالتقاء</td>
                     <td>الحاله</td>
@@ -177,6 +181,8 @@
                         {{ item.carType.name }}
                     </td>
                     <td v-else>--------</td>
+                    <td>{{ item.email?.split(',')[1]}}</td>
+                    <td>{{ item.email?.split(',')[2]}}</td>
                     <td>
                         {{ item.with_driver === '0' ? 'Without Driver' : 'With Driver' }}
                     </td>
@@ -216,6 +222,8 @@
                         {{ item.carType.name }}
                     </td>
                     <td v-else>--------</td>
+                    <td>{{ item.email?.split(',')[1]}}</td>
+                    <td>{{ item.email?.split(',')[2]}}</td>
                     <td>
                         {{ item.with_driver === '0' ? 'Without Driver' : 'With Driver' }}
                     </td>
@@ -240,7 +248,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="14"></td>
+                    <td colspan="16"></td>
                     <td>{{ fullTotal.toFixed(2) }}</td>
                     <td colspan="1">الاجمالي</td>
                 </tr>
