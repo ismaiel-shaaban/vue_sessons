@@ -172,7 +172,11 @@ axios.post("https://seasonreal.seasonsge.com/appv1real/program-status", formData
 onMounted(async () => {
     loading.value = true
     await axios.post("https://seasonreal.seasonsge.com/appv1real/all_slider").then(data => {
-        allPrograms.value = data.data.data
+        console.log(';;;' ,data);
+        if(data.data.success){
+
+            allPrograms.value = data.data.data
+        }
         loading.value = false
         console.log("allPrograms.value" ,allPrograms.value)
     })
