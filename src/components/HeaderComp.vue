@@ -21,7 +21,7 @@
         <router-link to="/add-app-images">
           صور التطبيق 
         </router-link>
-        <a href="https://seasonreal.seasonsge.com/appv1real/admin/login.php" class="fw-bold">
+        <a href="https://seasonsge.com/dashboard" class="fw-bold">
           الرجوع للصفحه الرئيسية
         </a>
       </div>
