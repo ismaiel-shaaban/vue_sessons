@@ -35,7 +35,7 @@
         <div class="d-flex align-items-center gap-2">
             
             <button class="btn p-1 btn-danger rounded-pill px-4 text-uppercase d-flex gap-2 align-items-center"
-                @click="deleteIAll">
+                @click="confirmDelete('program')">
                 
                 حذف الجميع
             </button>
@@ -327,6 +327,8 @@
         </table>
         <h3 v-if="programsArchive.length === 0" class="text-muted text-center w-100 py-5">Nothing To Show</h3>
         <Loader v-if="loading" :position="'fixed'"></Loader>
+        <DeleteArchivePopup v-if="deletePopupActive" :deletedProgram="tempData" @close="() => deletePopupActive = false">
+        </DeleteArchivePopup>
     </div>
 </template>
 
@@ -337,7 +339,13 @@ import Loader from '../Loader.vue';
 import JsonExcel from "vue-json-excel3";
 import Vue3Html2pdf from 'vue3-html2pdf'
 import { jsPDF } from "jspdf";
-
+import DeleteArchivePopup from '../DeleteArchivePopup.vue';
+const deletePopupActive = ref(false)
+const tempData = ref({})
+const confirmDelete = (type) => {
+    deletePopupActive.value = true
+    tempData.value = type
+}
 
 const html2Pdf = ref()
 const loading = ref(false)
@@ -478,10 +486,7 @@ const deleteItem = (item) => {
     })
   
 }
-const deleteIAll = () => {
-    window.open("https://seasonreal.seasonsge.com/appv1real/delete-program", "_blank");
-  
-}
+
 
 const getPrograms = async () => {
     loading.value = true

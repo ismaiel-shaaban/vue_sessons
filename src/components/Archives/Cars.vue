@@ -35,7 +35,7 @@
         <div class="d-flex align-items-center gap-2">
             
             <button class="btn p-1 btn-danger rounded-pill px-4 text-uppercase d-flex gap-2 align-items-center"
-                @click="deleteIAll">
+                @click="confirmDelete('car')">
                 
                 حذف الجميع
             </button>
@@ -261,6 +261,8 @@
                 لا توجد نتائج بحث بهذه التواريخ
             </div>
         </div>
+        <DeleteArchivePopup v-if="deletePopupActive" :deletedProgram="tempData" @close="() => deletePopupActive = false">
+        </DeleteArchivePopup>
         <Loader v-if="loading" :position="'fixed'"></Loader>
     </div>
 </template>
@@ -272,8 +274,14 @@ import Loader from '../Loader.vue';
 import JsonExcel from "vue-json-excel3";
 import Vue3Html2pdf from 'vue3-html2pdf'
 import { jsPDF } from "jspdf";
+import DeleteArchivePopup from '../DeleteArchivePopup.vue';
 
-
+const deletePopupActive = ref(false)
+const tempData = ref({})
+const confirmDelete = (type) => {
+    deletePopupActive.value = true
+    tempData.value = type
+}
 const html2Pdf = ref()
 const loading = ref(false)
 const carsArchive = ref([])
@@ -423,12 +431,7 @@ const deleteItem = (item) => {
     })
   
 }
-const deleteIAll = () => {
 
-    window.open("https://seasonreal.seasonsge.com/appv1real/delete-car", "_blank");
-
-  
-}
 
 
 

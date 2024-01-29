@@ -6,7 +6,7 @@
             <div class="d-flex align-items-center m-2 ">
             
                 <button class="btn p-1 btn-danger rounded-pill px-4 text-uppercase d-flex gap-2 align-items-center"
-                    @click="deleteIAllArchives">
+                    @click="confirmDelete('all')">
                     
                     حذف جميع الأرشيف
                 </button>
@@ -36,6 +36,8 @@
                 <Flights v-if="activeTab == '3'"></Flights>
                 <Programs v-if="activeTab == '4'"></Programs>
             </div>
+            <DeleteArchivePopup v-if="deletePopupActive" :deletedProgram="tempData" @close="() => deletePopupActive = false">
+            </DeleteArchivePopup>
         </div>
     </div>
 </template>
@@ -47,11 +49,15 @@ import Cars from '../components/Archives/Cars.vue';
 import Hotels from '../components/Archives/Hotels.vue';
 import Flights from '../components/Archives/Flights.vue';
 import Programs from '../components/Archives/Programs.vue';
-
-const activeTab = ref('1')
-const deleteIAllArchives = ()=>{
-    window.open("https://seasonreal.seasonsge.com/appv1real/delete-all", "_blank");
+import DeleteArchivePopup from '../components/DeleteArchivePopup.vue';
+const deletePopupActive = ref(false)
+const tempData = ref({})
+const confirmDelete = (type) => {
+    deletePopupActive.value = true
+    tempData.value = type
 }
+const activeTab = ref('1')
+
 </script>
 
 <style lang="scss" scoped>

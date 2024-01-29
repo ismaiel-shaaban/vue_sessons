@@ -36,7 +36,7 @@
         <div class="d-flex align-items-center gap-2">
             
             <button class="btn p-1 btn-danger rounded-pill px-4 text-uppercase d-flex gap-2 align-items-center"
-                @click="deleteIAll">
+                @click="confirmDelete('flight')">
                 
                 حذف الجميع
             </button>
@@ -421,6 +421,8 @@
             </div>
         </div>
         <Loader v-if="loading" :position="'fixed'"></Loader>
+        <DeleteArchivePopup v-if="deletePopupActive" :deletedProgram="tempData" @close="() => deletePopupActive = false">
+        </DeleteArchivePopup>
     </div>
 </template>
 <script setup>
@@ -430,6 +432,7 @@ import Loader from '../Loader.vue';
 import JsonExcel from "vue-json-excel3";
 import Vue3Html2pdf from 'vue3-html2pdf'
 import { jsPDF } from "jspdf";
+import DeleteArchivePopup from '../DeleteArchivePopup.vue';
 
 const html2Pdf = ref()
 const loading = ref(false)
@@ -441,6 +444,12 @@ const searchDate = ref({
     fromDate: new Date().toLocaleDateString("en-CA"),
     toDate: new Date().toLocaleDateString("en-CA"),
 })
+const deletePopupActive = ref(false)
+const tempData = ref({})
+const confirmDelete = (type) => {
+    deletePopupActive.value = true
+    tempData.value = type
+}
 const USDollar = Intl.NumberFormat('en-US', {
     currency: 'USD',
     style: 'currency',
@@ -567,10 +576,7 @@ const deleteItem = (item) => {
     })
   
 }
-const deleteIAll = () => {
-    window.open("https://seasonreal.seasonsge.com/appv1real/delete-flight", "_blank");
-  
-}
+
 
 const getBoFlights = async () => {
     loading.value = true
