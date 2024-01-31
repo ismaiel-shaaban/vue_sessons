@@ -281,8 +281,8 @@
                             </div>
 
                         </div>
-                        <span v-if="validation.main_image.$error" class="text-danger fst-italic d-block mt-1">
-                            {{ validation.main_image.required.$message }}
+                        <span v-if="validation.main_imagee.$error" class="text-danger fst-italic d-block mt-1">
+                            {{ validation.main_imagee.required.$message }}
                         </span>
                     </label>
                     <label class="w-100">
@@ -298,8 +298,8 @@
                                     :src="imagePreview.second.path" alt="">
                             </div>
                         </div>
-                        <span v-if="validation.details_image.$error" class="text-danger fst-italic d-block mt-1">
-                            {{ validation.details_image.required.$message }}
+                        <span v-if="validation.details_imagee.$error" class="text-danger fst-italic d-block mt-1">
+                            {{ validation.details_imagee.required.$message }}
                         </span>
                     </label>
                     <label class="w-100">
@@ -624,8 +624,8 @@ const allInfo = ref({
     tax: '0',
     program_details_arabic: '',
     program_details_english: '',
-    main_image: '',
-    details_image: '',
+    main_imagee: '',
+    details_imagee: '',
 
 })
 const imagePreview = ref({
@@ -705,14 +705,14 @@ const validation = useVuelidate(rules, allInfo)
 
 
 const getFirstImage = (e) => {
-    allInfo.value.main_image = e.target.files[0]
+    allInfo.value.main_imagee = e.target.files[0]
     console.log('hhhhhhhhhh', e.target.files[0]);
     imagePreview.value.first.path = URL.createObjectURL(e.target.files[0])
     console.log('mmmmmmmmm', imagePreview.value.first.path);
     imagePreview.value.first.name = e.target.files[0].name
 }
 const getSecondImage = (e) => {
-    allInfo.value.details_image = e.target.files[0]
+    allInfo.value.details_imagee = e.target.files[0]
     imagePreview.value.second.path = URL.createObjectURL(e.target.files[0])
 }
 
@@ -815,8 +815,8 @@ const saveEdits = async () => {
     formData.append("tax", allInfo.value.tax)
     formData.append("program_details_arabic", allInfo.value.program_details_arabic)
     formData.append("program_details_english", allInfo.value.program_details_english)
-    // formData.append("main_image", allInfo.value.main_image)
-    // formData.append("details_image", allInfo.value.details_image)
+    // formData.append("main_imagee", allInfo.value.main_imagee)
+    // formData.append("details_imagee", allInfo.value.details_imagee)
     // formData.append("image_1", allInfo.value.image_1)
     // formData.append("image_2", allInfo.value.image_2)
     // formData.append("image_3", allInfo.value.image_3)
@@ -834,8 +834,8 @@ const saveEdits = async () => {
         const inputFileSix = document.getElementById("six").files[0]
         const inputFileSeven = document.getElementById("seven").files[0]
         ImageFormData.append("program_id", allInfo.value.id)
-        if (inputFileOne) ImageFormData.append("main_image", inputFileOne)
-        if (inputFileTwo) ImageFormData.append("details_image", inputFileTwo)
+        if (inputFileOne) ImageFormData.append("main_imagee", inputFileOne)
+        if (inputFileTwo) ImageFormData.append("details_imagee", inputFileTwo)
         if (inputFileThree) ImageFormData.append("image_1", inputFileThree)
         if (inputFileFour) ImageFormData.append("image_2", inputFileFour)
         if (inputFileFive) ImageFormData.append("image_3", inputFileFive)
@@ -901,8 +901,8 @@ onMounted(async () => {
     loading.value = true
     await axios.get("https://seasonreal.seasonsge.com/appv1real/all-program").then(data => {
         allInfo.value = data.data.filter(el => el.id === props.editProgram.id)[0]
-        imagePreview.value.first.path = `https://seasonreal.seasonsge.com/upload/${allInfo.value.main_image}`
-        imagePreview.value.second.path = `https://seasonreal.seasonsge.com/upload/${allInfo.value.details_image}`
+        imagePreview.value.first.path = `https://seasonreal.seasonsge.com/upload/${allInfo.value.main_imagee}`
+        imagePreview.value.second.path = `https://seasonreal.seasonsge.com/upload/${allInfo.value.details_imagee}`
         imagePreview.value.third.path = `https://seasonreal.seasonsge.com/upload/${allInfo.value.image_1}`
         imagePreview.value.fourth.path = `https://seasonreal.seasonsge.com/upload/${allInfo.value.image_2}`
         imagePreview.value.fifth.path = `https://seasonreal.seasonsge.com/upload/${allInfo.value.image_3}`

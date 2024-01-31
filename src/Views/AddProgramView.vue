@@ -281,8 +281,8 @@
                             @touchstart.prevent class="img-fluid" width="250" :src="imagePreview.first.path" alt="">
                             </div>
                         </div>
-                        <span v-if="validation.main_image.$error" class="text-danger fst-italic d-block mt-1">
-                            {{ validation.main_image.required.$message }}
+                        <span v-if="validation.main_imagee.$error" class="text-danger fst-italic d-block mt-1">
+                            {{ validation.main_imagee.required.$message }}
                         </span>
                     </label>
                     <label class="w-100">
@@ -303,8 +303,8 @@
                          @touchstart.prevent class="img-fluid" width="250" :src="imagePreview.second.path" alt="">
                             </div>
                         </div>
-                        <span v-if="validation.details_image.$error" class="text-danger fst-italic d-block mt-1">
-                            {{ validation.details_image.required.$message }}
+                        <span v-if="validation.details_imagee.$error" class="text-danger fst-italic d-block mt-1">
+                            {{ validation.details_imagee.required.$message }}
                         </span>
                     </label>
 
@@ -577,8 +577,8 @@ const allInfo = ref({
     tax: '0',
     program_details_arabic: '',
     program_details_english: '',
-    main_image: '',
-    details_image: '',
+    main_imagee: '',
+    details_imagee: '',
     // image_1: '',
     // image_2: '',
     // image_3: '',
@@ -643,12 +643,12 @@ const validation = useVuelidate(rules, allInfo)
 
 
 const getFirstImage = (e) => {
-    allInfo.value.main_image = e.target.files[0]
+    allInfo.value.main_imagee = e.target.files[0]
     imagePreview.value.first.path = URL.createObjectURL(e.target.files[0])
     imagePreview.value.first.name = e.target.files[0].name
 }
 const getSecondImage = (e) => {
-    allInfo.value.details_image = e.target.files[0]
+    allInfo.value.details_imagee = e.target.files[0]
     imagePreview.value.second.path = URL.createObjectURL(e.target.files[0])
     imagePreview.value.second.name = e.target.files[0].name
 }
@@ -764,8 +764,8 @@ if (!validation.value.$error) {
         formData.append("tax", allInfo.value.tax)
         formData.append("program_details_arabic", allInfo.value.program_details_arabic)
         formData.append("program_details_english", allInfo.value.program_details_english)
-        formData.append("main_image", allInfo.value.main_image)
-        formData.append("details_image", allInfo.value.details_image)
+        formData.append("main_imagee", allInfo.value.main_imagee)
+        formData.append("details_imagee", allInfo.value.details_imagee)
         formData.append("image_1", allInfo.value.image_1)
         formData.append("image_2", allInfo.value.image_2)
         formData.append("image_3", allInfo.value.image_3)
