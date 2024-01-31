@@ -271,15 +271,15 @@
                         <span class="d-block mb-3">صوره اساسية: </span>
                         <div class="d-flex justify-content-between align-items-center gap-4 flex-md-row flex-column">
                             <label for="first" class="browse-butn opacity-hover" type="button">
-                                <input @change="getFirstImage($event)"  id="first" class="d-none" type="file">
+                                <input @change="getFirstImage($event)" id="first" class="d-none" type="file">
                                 Browse
                             </label>
-                            <div >
-                                <img  @contextmenu.prevent
-                            @touchstart.prevent class="img-fluid" width="250"
-                                    :src="`https://seasonreal.seasonsge.com/upload/${allInfo.main_image}`" alt="">
+
+                            <div>
+                                <img @contextmenu.prevent @touchstart.prevent class="img-fluid" width="250"
+                                    :src="imagePreview.first.path" alt="">
                             </div>
-                        
+
                         </div>
                         <span v-if="validation.main_image.$error" class="text-danger fst-italic d-block mt-1">
                             {{ validation.main_image.required.$message }}
@@ -292,14 +292,10 @@
                                 <input @change="getSecondImage($event)" id="second" class="d-none" type="file">
                                 Browse
                             </label>
-                            <div v-if="allInfo.details_image !== '' ">
-                                <img   @contextmenu.prevent
-                                @touchstart.preventclass="img-fluid" width="250"
-                                    :src="`https://seasonreal.seasonsge.com/upload/${allInfo.details_image}`" alt="">
-                            </div>
-                            <div v-else>
-                                <img  @contextmenu.prevent
-                                @touchstart.prevent class="img-fluid" width="250" :src="imagePreview.second" alt="">
+
+                            <div>
+                                <img @contextmenu.prevent @touchstart.prevent class="img-fluid" width="250"
+                                    :src="imagePreview.second.path" alt="">
                             </div>
                         </div>
                         <span v-if="validation.details_image.$error" class="text-danger fst-italic d-block mt-1">
@@ -310,7 +306,7 @@
                         <span class="d-block mb-3">صوره اضافيه 1: </span>
                         <div class="d-flex justify-content-between align-items-center gap-4 flex-md-row flex-column">
                             <label for="third" class="browse-butn opacity-hover" type="button">
-                                <input @change="getThirdImage($event)" id="second" class="d-none" type="file">
+                                <input @change="getThirdImage($event)" id="third" class="d-none" type="file">
                                 Browse
                             </label>
                             <div for="third" class="place-holder rounded-2 d-grid" v-if="imagePreview.third.path === ''">
@@ -320,8 +316,8 @@
                                 </div>
                             </div>
                             <div v-else>
-                                <img  @contextmenu.prevent
-                         @touchstart.prevent class="img-fluid" width="250" :src="imagePreview.third.path" alt="">
+                                <img @contextmenu.prevent @touchstart.prevent class="img-fluid" width="250"
+                                    :src="imagePreview.third.path" alt="">
                             </div>
                         </div>
                         <!-- <span v-if="validation.image_1.$error" class="text-danger fst-italic d-block mt-1">
@@ -333,7 +329,7 @@
                         <span class="d-block mb-3">صوره اضافيه 2: </span>
                         <div class="d-flex justify-content-between align-items-center gap-4 flex-md-row flex-column">
                             <label for="fourth" class="browse-butn opacity-hover" type="button">
-                                <input @change="getFourthImage($event)" id="second" class="d-none" type="file">
+                                <input @change="getFourthImage($event)" id="fourth" class="d-none" type="file">
                                 Browse
                             </label>
                             <div for="third" class="place-holder rounded-2 d-grid" v-if="imagePreview.fourth.path === ''">
@@ -343,8 +339,8 @@
                                 </div>
                             </div>
                             <div v-else>
-                                <img  @contextmenu.prevent
-                         @touchstart.prevent class="img-fluid" width="250" :src="imagePreview.fourth.path" alt="">
+                                <img @contextmenu.prevent @touchstart.prevent class="img-fluid" width="250"
+                                    :src="imagePreview.fourth.path" alt="">
                             </div>
                         </div>
                         <!-- <span v-if="validation.image_2.$error" class="text-danger fst-italic d-block mt-1">
@@ -356,7 +352,7 @@
                         <span class="d-block mb-3">صوره اضافيه 3: </span>
                         <div class="d-flex justify-content-between align-items-center gap-4 flex-md-row flex-column">
                             <label for="fifth" class="browse-butn opacity-hover" type="button">
-                                <input @change="getFifthImage($event)" id="second" class="d-none" type="file">
+                                <input @change="getFifthImage($event)" id="fifth" class="d-none" type="file">
                                 Browse
                             </label>
                             <div for="third" class="place-holder rounded-2 d-grid" v-if="imagePreview.fifth.path === ''">
@@ -366,8 +362,8 @@
                                 </div>
                             </div>
                             <div v-else>
-                                <img  @contextmenu.prevent
-                         @touchstart.prevent class="img-fluid" width="250" :src="imagePreview.fifth.path" alt="">
+                                <img @contextmenu.prevent @touchstart.prevent class="img-fluid" width="250"
+                                    :src="imagePreview.fifth.path" alt="">
                             </div>
                         </div>
                         <!-- <span v-if="validation.image_3.$error" class="text-danger fst-italic d-block mt-1">
@@ -379,7 +375,7 @@
                         <span class="d-block mb-3">صوره اضافيه 4: </span>
                         <div class="d-flex justify-content-between align-items-center gap-4 flex-md-row flex-column">
                             <label for="six" class="browse-butn opacity-hover" type="button">
-                                <input @change="getSixImage($event)" id="second" class="d-none" type="file">
+                                <input @change="getSixImage($event)" id="six" class="d-none" type="file">
                                 Browse
                             </label>
                             <div for="third" class="place-holder rounded-2 d-grid" v-if="imagePreview.six.path === ''">
@@ -389,8 +385,8 @@
                                 </div>
                             </div>
                             <div v-else>
-                                <img  @contextmenu.prevent
-                         @touchstart.prevent class="img-fluid" width="250" :src="imagePreview.six.path" alt="">
+                                <img @contextmenu.prevent @touchstart.prevent class="img-fluid" width="250"
+                                    :src="imagePreview.six.path" alt="">
                             </div>
                         </div>
                         <!-- <span v-if="validation.image_4.$error" class="text-danger fst-italic d-block mt-1">
@@ -402,7 +398,7 @@
                         <span class="d-block mb-3">صوره اضافيه 5: </span>
                         <div class="d-flex justify-content-between align-items-center gap-4 flex-md-row flex-column">
                             <label for="seven" class="browse-butn opacity-hover" type="button">
-                                <input @change="getSevenImage($event)" id="second" class="d-none" type="file">
+                                <input @change="getSevenImage($event)" id="seven" class="d-none" type="file">
                                 Browse
                             </label>
                             <div for="third" class="place-holder rounded-2 d-grid" v-if="imagePreview.seven.path === ''">
@@ -412,8 +408,8 @@
                                 </div>
                             </div>
                             <div v-else>
-                                <img  @contextmenu.prevent
-                         @touchstart.prevent class="img-fluid" width="250" :src="imagePreview.seven.path" alt="">
+                                <img @contextmenu.prevent @touchstart.prevent class="img-fluid" width="250"
+                                    :src="imagePreview.seven.path" alt="">
                             </div>
                         </div>
                         <!-- <span v-if="validation.image_5.$error" class="text-danger fst-italic d-block mt-1">
@@ -630,7 +626,7 @@ const allInfo = ref({
     program_details_english: '',
     main_image: '',
     details_image: '',
-  
+
 })
 const imagePreview = ref({
     first: {
@@ -691,10 +687,10 @@ const getSixImage = (e) => {
 }
 const getSevenImage = (e) => {
     allInfo.value.image_5 = e.target.files[0]
-    console.log('hhhhhhhhhh' ,e.target.files[0]);
+    console.log('hhhhhhhhhh', e.target.files[0]);
     imagePreview.value.seven.path = URL.createObjectURL(e.target.files[0])
     imagePreview.value.seven.name = e.target.files[0].name
-    console.log('mmmmmmmmm',imagePreview.value);
+    console.log('mmmmmmmmm', imagePreview.value);
 }
 const rules = {
 
@@ -710,14 +706,14 @@ const validation = useVuelidate(rules, allInfo)
 
 const getFirstImage = (e) => {
     allInfo.value.main_image = e.target.files[0]
-    console.log('hhhhhhhhhh' ,e.target.files[0]);
+    console.log('hhhhhhhhhh', e.target.files[0]);
     imagePreview.value.first.path = URL.createObjectURL(e.target.files[0])
-    console.log('mmmmmmmmm',imagePreview.value.first.path);
+    console.log('mmmmmmmmm', imagePreview.value.first.path);
     imagePreview.value.first.name = e.target.files[0].name
 }
 const getSecondImage = (e) => {
     allInfo.value.details_image = e.target.files[0]
-    imagePreview.value.second = URL.createObjectURL(e.target.files[0])
+    imagePreview.value.second.path = URL.createObjectURL(e.target.files[0])
 }
 
 const addCity = () => {
@@ -728,7 +724,7 @@ const addCity = () => {
         hotel_name_english: '',
         registration_date: new Date().toLocaleDateString("en-CA"),
         departure_date: new Date().toLocaleDateString("en-CA"),
-        num : '0',
+        num: '0',
         num_of_nights: '0',
     })
 }
@@ -819,26 +815,33 @@ const saveEdits = async () => {
     formData.append("tax", allInfo.value.tax)
     formData.append("program_details_arabic", allInfo.value.program_details_arabic)
     formData.append("program_details_english", allInfo.value.program_details_english)
-    formData.append("main_image", allInfo.value.main_image)
-        formData.append("details_image", allInfo.value.details_image)
-        formData.append("image_1", allInfo.value.image_1)
-        formData.append("image_2", allInfo.value.image_2)
-        formData.append("image_3", allInfo.value.image_3)
-        formData.append("image_4", allInfo.value.image_4)
-        formData.append("image_5", allInfo.value.image_5)
-
-    const inputFileOne = document.getElementById("first").files[0]
-    const inputFileTwo = document.getElementById("second").files[0]
-    if (inputFileOne || inputFileTwo) {
-        formData.append("main_image", inputFileOne)
-        formData.append("details_image", inputFileTwo)
-    } else {
-        formData.append("main_image", allInfo.value.main_image)
-        formData.append("details_image", allInfo.value.details_image)
-    }
+    // formData.append("main_image", allInfo.value.main_image)
+    // formData.append("details_image", allInfo.value.details_image)
+    // formData.append("image_1", allInfo.value.image_1)
+    // formData.append("image_2", allInfo.value.image_2)
+    // formData.append("image_3", allInfo.value.image_3)
+    // formData.append("image_4", allInfo.value.image_4)
+    // formData.append("image_5", allInfo.value.image_5)
 
     await axios.post("https://seasonreal.seasonsge.com/appv1real/prrogram-edit", formData).then(response => {
         // console.log(response);
+        const ImageFormData = new FormData()
+        const inputFileOne = document.getElementById("first").files[0]
+        const inputFileTwo = document.getElementById("second").files[0]
+        const inputFileThree = document.getElementById("third").files[0]
+        const inputFileFour = document.getElementById("fourth").files[0]
+        const inputFileFive = document.getElementById("fifth").files[0]
+        const inputFileSix = document.getElementById("six").files[0]
+        const inputFileSeven = document.getElementById("seven").files[0]
+        ImageFormData.append("program_id", allInfo.value.id)
+        if (inputFileOne) ImageFormData.append("main_image", inputFileOne)
+        if (inputFileTwo) ImageFormData.append("details_image", inputFileTwo)
+        if (inputFileThree) ImageFormData.append("image_1", inputFileThree)
+        if (inputFileFour) ImageFormData.append("image_2", inputFileFour)
+        if (inputFileFive) ImageFormData.append("image_3", inputFileFive)
+        if (inputFileSix) ImageFormData.append("image_4", inputFileSix)
+        if (inputFileSeven) ImageFormData.append("image_5", inputFileSeven)
+         axios.post("https://seasonreal.seasonsge.com/appv1real/image_edit.php", ImageFormData).then(response => {})
         if (cityFull.value.length > 0) {
             tableItems.value.forEach(el => {
                 if (el.program_id !== '') {
@@ -898,12 +901,13 @@ onMounted(async () => {
     loading.value = true
     await axios.get("https://seasonreal.seasonsge.com/appv1real/all-program").then(data => {
         allInfo.value = data.data.filter(el => el.id === props.editProgram.id)[0]
-        imagePreview.value.first.path =`https://seasonreal.seasonsge.com/upload/${allInfo.value.main_image}`
-        imagePreview.value.third.path =`https://seasonreal.seasonsge.com/upload/${allInfo.value.image_1}`
-        imagePreview.value.fourth.path =`https://seasonreal.seasonsge.com/upload/${allInfo.value.image_2}`
-        imagePreview.value.fifth.path =`https://seasonreal.seasonsge.com/upload/${allInfo.value.image_3}`
-        imagePreview.value.six.path =`https://seasonreal.seasonsge.com/upload/${allInfo.value.image_4}`
-        imagePreview.value.seven.path =`https://seasonreal.seasonsge.com/upload/${allInfo.value.image_5}`
+        imagePreview.value.first.path = `https://seasonreal.seasonsge.com/upload/${allInfo.value.main_image}`
+        imagePreview.value.second.path = `https://seasonreal.seasonsge.com/upload/${allInfo.value.details_image}`
+        imagePreview.value.third.path = `https://seasonreal.seasonsge.com/upload/${allInfo.value.image_1}`
+        imagePreview.value.fourth.path = `https://seasonreal.seasonsge.com/upload/${allInfo.value.image_2}`
+        imagePreview.value.fifth.path = `https://seasonreal.seasonsge.com/upload/${allInfo.value.image_3}`
+        imagePreview.value.six.path = `https://seasonreal.seasonsge.com/upload/${allInfo.value.image_4}`
+        imagePreview.value.seven.path = `https://seasonreal.seasonsge.com/upload/${allInfo.value.image_5}`
     })
     await axios.get("https://seasonreal.seasonsge.com/appv1real/cities-view")
         .then(data => {
