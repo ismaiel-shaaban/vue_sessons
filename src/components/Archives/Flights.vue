@@ -108,13 +108,19 @@
                             <td>{{ item.phone_number }}</td>
                             <td>{{ item.nationality }}</td>
                             <td>{{ item.passport_number }}</td>
-                            <td>{{ item.person2.split(',')[0] || '-----' }}</td>
+                             <!-- <td>{{ item.person2.split(',')[0] || '-----' }}</td>
                             <td>{{ item.person3.split(',')[0] || '-----' }}</td>
-                            <td>{{ item.person4.split(',')[0] || '-----' }}</td>
-                            <td>{{ item.person5.split(',')[0] || '-----' }}</td>
-                            <td>{{ item.person6.split(',')[0] || '-----' }}</td>
+                            <td>{{ item.person4.split(',')[0] || '-----' }}</td> -->
+                            <td>{{ item.person2!= null ? item.person2.split(',')[0] : '-----' }}</td>
+                            <td>{{ item.person3!= null ? item.person3.split(',')[0] : '-----' }}</td>
+                            <td>{{ item.person4!= null ? item.person4.split(',')[0] : '-----' }}</td>
+                            <td>{{ item.person5!= null ? item.person5.split(',')[0] : '-----' }}</td>
+                            <td>{{ item.person6!= null ? item.person6.split(',')[0] : '-----' }}</td>
+                            <td>{{ item.person7!= null ? item.person7.split(',')[0] : '-----' }}</td>
+                            <td>{{ item.person8!= null ? item.person8.split(',')[0] : '-----' }}</td>
+                            <!-- <td>{{ item.person6.split(',')[0] || '-----' }}</td>
                             <td>{{ item.person7.split(',')[0] || '-----' }}</td>
-                            <td>{{ item.person8.split(',')[0] || '-----' }}</td>
+                            <td>{{ item.person8.split(',')[0] || '-----' }}</td> -->
                             <td v-if="item.status">
                                 
                                 <i :class="item.status == '1' ? statuscheckIconClass : statusXMarkIconClass" class="ms-2"></i>
@@ -167,13 +173,19 @@
                             <td>{{ item.phone_number }}</td>
                             <td>{{ item.nationality }}</td>
                             <td>{{ item.passport_number }}</td>
-                            <td>{{ item.person2.split(',')[0] || '-----' }}</td>
+                            <!-- <td>{{ item.person2.split(',')[0] || '-----' }}</td>
                             <td>{{ item.person3.split(',')[0] || '-----' }}</td>
-                            <td>{{ item.person4.split(',')[0] || '-----' }}</td>
-                            <td>{{ item.person5.split(',')[0] || '-----' }}</td>
-                            <td>{{ item.person6.split(',')[0] || '-----' }}</td>
+                            <td>{{ item.person4.split(',')[0] || '-----' }}</td> -->
+                            <td>{{ item.person2!= null ? item.person2.split(',')[0] : '-----' }}</td>
+                            <td>{{ item.person3!= null ? item.person3.split(',')[0] : '-----' }}</td>
+                            <td>{{ item.person4!= null ? item.person4.split(',')[0] : '-----' }}</td>
+                            <td>{{ item.person5!= null ? item.person5.split(',')[0] : '-----' }}</td>
+                            <td>{{ item.person6!= null ? item.person6.split(',')[0] : '-----' }}</td>
+                            <td>{{ item.person7!= null ? item.person7.split(',')[0] : '-----' }}</td>
+                            <td>{{ item.person8!= null ? item.person8.split(',')[0] : '-----' }}</td>
+                            <!-- <td>{{ item.person6.split(',')[0] || '-----' }}</td>
                             <td>{{ item.person7.split(',')[0] || '-----' }}</td>
-                            <td>{{ item.person8.split(',')[0] || '-----' }}</td>
+                            <td>{{ item.person8.split(',')[0] || '-----' }}</td> -->
                             <td v-if="item.status === 0">
                                 <button class="btn btn-danger rounded-pill" @click="changeStatus(item)">
                                     <i :class="statusIconClass"></i>
