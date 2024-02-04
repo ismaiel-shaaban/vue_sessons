@@ -326,6 +326,12 @@
             </tbody>
         </table>
         <h3 v-if="programsArchive.length === 0" class="text-muted text-center w-100 py-5">Nothing To Show</h3>
+        <div class="alert alert-error alert-danger d-flex align-items-center gap-2 position-fixed" role="alert">
+            <i class="fa-solid fa-circle-xmark"></i>
+            <div>
+                لا توجد نتائج بحث بهذه التواريخ
+            </div>
+        </div>
         <Loader v-if="loading" :position="'fixed'"></Loader>
         <DeleteArchivePopup v-if="deletePopupActive" :deletedProgram="tempData" @close="() => deletePopupActive = false">
         </DeleteArchivePopup>
@@ -421,7 +427,8 @@ const filteration = computed(() => {
 
 const searchWithDate = async () => {
     searchInput.value = ''
-    filterList.value = programsArchive.value.filter(el => el.flight.departureDate >= searchDate.value.fromDate && el.flight.returnStartDate <= searchDate.value.toDate)
+    console.log(searchDate.value.fromDate);
+    filterList.value = programsArchive.value.filter(el => el.registration_date.split(" ")[0] >= searchDate.value.fromDate && el.registration_date.split(" ")[0] <= searchDate.value.toDate)
     if (filterList.value.length === 0) {
         document.querySelector(".alert").classList.add("active")
         setTimeout(() => {
@@ -564,6 +571,17 @@ const changeData = async (id, status, index) => {
 </script>
 
 <style lang="scss" scoped>
+
+.alert {
+    top: -50%;
+    left: 50%;
+    transition: 0.2s;
+    transform: translateX(-50%);
+
+    &.active {
+        top: 5%;
+    }
+}
 .responsive-table {
     td {
         border: 1px solid gray;
