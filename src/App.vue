@@ -1,9 +1,10 @@
 <template>
   <main>
-    <router-view></router-view>
+  
   </main>
 </template>
 <script setup>
+  //  <router-view></router-view>
     //   import { onMounted, onBeforeUnmount } from 'vue';
     // const preventContextMenu = (e) => {
     //   e.preventDefault();
